@@ -1,0 +1,48 @@
+<div class="row">
+  <input
+    type="text"
+    placeholder="Search Products"
+    [(ngModel)]="searchText"
+    class="form-control"
+  />
+</div>
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Availabe</th>
+        <th>Quantity</th>
+        <th>Color</th>
+        <th>Dist</th>
+        <th>Purchase Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | productSearch: searchText">
+        <td>{{ product.Id }}</td>
+        <td>{{ product.Title | uppercase }}</td>
+        <td>{{ product.Price | currency }}</td>
+        <td>{{ product.inStock }}</td>
+        <td>{{ product.Quantity }}</td>
+        <td>{{ product.Color }}</td>
+        <td>{{ product.Agency }}</td>
+        <td>
+          <input
+            type="text"
+            placeholder="enter purchase quantity"
+            [(ngModel)]="product.Quantity"
+            class="form-control"
+          />
+        </td>
+        <td>
+          <button class="btn btn-info" (click)="buy(product)">Buy</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
